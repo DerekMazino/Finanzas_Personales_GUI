@@ -1,0 +1,31 @@
+schema: spec-driven
+
+context: |
+  Project: Antigravity-SDD-Project (Gestión de Finanzas)
+  Workflow: Spec-Driven Development (SDD) con GitFlow.
+  Tech stack: Python, SQLite, CustomTkinter, Pytest.
+  Convenciones: Responder y generar artefactos en ESPAÑOL.
+  VCS Strategy: 
+    - Ramas Feature: feature/{feature-name} (desde develop)
+    - Ramas HU: task/{feature-name}/HU-{id} (desde su rama feature)
+  Remote Repo: https://github.com/DerekMazino/Finanzas_Personales_GUI.git
+  Equipo: Juan Camilo (Revisores).
+
+rules:
+  global:
+    - "RULE-01: Al archivar un cambio, actualizar obligatoriamente README.md y Documentación/tutorial.md."
+    - "RULE-02: No implementar código sin una HU previa con criterios de aceptación en el .md de la Feature."
+    - "RULE-05: Commits con formato 'feat(HU-{id}): {descripcion}'."
+    - "RULE-06: Antes de codificar, validar que la rama actual coincida con la HU."
+
+  proposal:
+    - "Seguir el protocolo RULE-02: Evolución basada en incrementos en el historial del fichero de la Feature."
+    - "Definir claramente los criterios de aceptación para cada HU."
+
+  tasks:
+    - "RULE-03: Gestión de ramas: Al iniciar HU, crear rama task/ desde la feature/ correspondiente."
+    - "Al finalizar HU: Commit, Push y Merge hacia la rama feature/ padre."
+    - "Si requiere revisión, usar GitHub MCP para crear PR a Laura, Marcela o Juan Camilo."
+
+  verify:
+    - "RULE-04: Si la feature está completa y no hay más HUs, mergear feature/ a develop y limpiar ramas."
