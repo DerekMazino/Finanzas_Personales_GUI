@@ -61,3 +61,11 @@ class ConceptoService:
         
         periodo_id = periodo[0]
         return self.concepto_repo.get_by_periodo(periodo_id)
+
+    def modificar_concepto(self, id, old_nombre, new_nombre, valor, tipo, es_recurrente):
+        self.validar_datos(new_nombre, valor, tipo)
+        
+        if es_recurrente and old_nombre != new_nombre:
+            self.concepto_repo.update_plantilla_name(old_nombre, new_nombre)
+            
+        self.concepto_repo.update_concepto(id, new_nombre, float(valor), tipo, 1 if es_recurrente else 0)

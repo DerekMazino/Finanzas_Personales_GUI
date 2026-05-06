@@ -25,3 +25,17 @@ class ConceptoRepository:
         # Esta lógica se refinará en el servicio, pero el repo provee el acceso
         query, params = QueryBuilder(self.table).select().where("es_recurrente", 1).where("periodo_id", periodo_id).build()
         return self.db.fetch_all(query, params)
+
+    def update_concepto(self, id, nombre, valor, tipo, es_recurrente):
+        data = {
+            "nombre": nombre,
+            "valor": valor,
+            "tipo": tipo,
+            "es_recurrente": es_recurrente
+        }
+        query, params = QueryBuilder(self.table).update(data).where("id", id).build()
+        self.db.execute_query(query, params)
+
+    def update_plantilla_name(self, old_nombre, new_nombre):
+        query, params = QueryBuilder("plantillas_recurrentes").update({"nombre": new_nombre}).where("nombre", old_nombre).build()
+        self.db.execute_query(query, params)

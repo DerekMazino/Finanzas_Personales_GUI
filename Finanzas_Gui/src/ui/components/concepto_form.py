@@ -2,14 +2,15 @@ import customtkinter as ctk
 from tkinter import messagebox
 
 class ConceptoForm(ctk.CTkToplevel):
-    def __init__(self, master, concepto_service, mes_actual, anio_actual, on_success=None):
+    def __init__(self, master, concepto_service, mes_actual, anio_actual, on_success=None, concepto_existente=None):
         super().__init__(master)
         self.concepto_service = concepto_service
         self.mes_actual = mes_actual
         self.anio_actual = anio_actual
         self.on_success = on_success
+        self.concepto_existente = concepto_existente
         
-        self.title("Nuevo Concepto")
+        self.title("Modificar Concepto" if concepto_existente else "Nuevo Concepto")
         self.geometry("400x500")
         self.setup_ui()
         
@@ -42,6 +43,16 @@ class ConceptoForm(ctk.CTkToplevel):
         self.recurrente_switch = ctk.CTkSwitch(self, text="Es recurrente", variable=self.recurrente_var)
         self.recurrente_switch.grid(row=7, column=0, padx=20, pady=(0, 15), sticky="w")
 
+        # Pre-llenado en modo edición
+        if self.concepto_existente:
+            _, _, nombre, valor, tipo, es_recurrente, *_ = self.concepto_existente
+            self.nombre_entry.insert(0, nombre)
+            self.valor_entry.insert(0, str(valor))
+            self.tipo_var.set(tipo)
+            self.recurrente_var.set(bool(es_recurrente))
+            self.recurrente_switch.configure(state="disabled") # No permitir cambiar si es recurrente o no en modo edición
+
+
         # Botones
         self.save_btn = ctk.CTkButton(self, text="Guardar", command=self.save)
         self.save_btn.grid(row=8, column=0, padx=20, pady=20, sticky="ew")
@@ -53,11 +64,20 @@ class ConceptoForm(ctk.CTkToplevel):
         es_recurrente = self.recurrente_var.get()
 
         try:
-            self.concepto_service.agregar_concepto(
-                self.mes_actual, self.anio_actual,
-                nombre, valor, tipo, es_recurrente
-            )
-            messagebox.showinfo("Éxito", "Concepto guardado correctamente.")
+            if self.concepto_existente:
+                id_conc = self.concepto_existente[0]
+                old_nombre = self.concepto_existente[2]
+                self.concepto_service.modificar_concepto(
+                    id_conc, old_nombre, nombre, valor, tipo, es_recurrente
+                )
+                messagebox.showinfo("Éxito", "Concepto modificado correctamente.")
+            else:
+                self.concepto_service.agregar_concepto(
+                    self.mes_actual, self.anio_actual,
+                    nombre, valor, tipo, es_recurrente
+                )
+                messagebox.showinfo("Éxito", "Concepto guardado correctamente.")
+
             if self.on_success:
                 self.on_success()
             self.destroy()

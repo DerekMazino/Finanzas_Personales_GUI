@@ -73,3 +73,24 @@ def test_obtener_conceptos_por_periodo(mock_deps):
     assert conceptos[0][2] == "Sueldo"
     assert conceptos[1][4] == "egreso"
     cr.get_by_periodo.assert_called_with(10)
+
+def test_modificar_concepto_no_recurrente(mock_deps):
+    ps, cr = mock_deps
+    service = ConceptoService(cr, ps)
+    service.modificar_concepto(1, "Antiguo", "Nuevo", 50, "ingreso", False)
+    cr.update_plantilla_name.assert_not_called()
+    cr.update_concepto.assert_called_once_with(1, "Nuevo", 50.0, "ingreso", 0)
+
+def test_modificar_concepto_recurrente_mismo_nombre(mock_deps):
+    ps, cr = mock_deps
+    service = ConceptoService(cr, ps)
+    service.modificar_concepto(2, "Internet", "Internet", 100, "egreso", True)
+    cr.update_plantilla_name.assert_not_called()
+    cr.update_concepto.assert_called_once_with(2, "Internet", 100.0, "egreso", 1)
+
+def test_modificar_concepto_recurrente_nuevo_nombre(mock_deps):
+    ps, cr = mock_deps
+    service = ConceptoService(cr, ps)
+    service.modificar_concepto(3, "Viejo", "Nuevo", 200, "egreso", True)
+    cr.update_plantilla_name.assert_called_once_with("Viejo", "Nuevo")
+    cr.update_concepto.assert_called_once_with(3, "Nuevo", 200.0, "egreso", 1)

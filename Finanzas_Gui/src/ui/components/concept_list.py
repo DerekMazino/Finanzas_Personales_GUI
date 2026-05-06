@@ -32,7 +32,7 @@ class ConceptListFrame(ctk.CTkScrollableFrame):
         header_frame = ctk.CTkFrame(self, fg_color="transparent")
         header_frame.pack(fill="x", padx=10, pady=(0, 10))
         
-        headers = ["Nombre", "Valor", "Tipo", "Recurrente"]
+        headers = ["Nombre", "Valor", "Tipo", "Recurrente", "Acción"]
         for i, header in enumerate(headers):
             lbl = ctk.CTkLabel(header_frame, text=header, font=ctk.CTkFont(weight="bold"))
             lbl.grid(row=0, column=i, sticky="w", padx=20)
@@ -55,5 +55,15 @@ class ConceptListFrame(ctk.CTkScrollableFrame):
             # Recurrente
             ctk.CTkLabel(row_frame, text="Sí" if es_recurrente else "No").grid(row=0, column=3, sticky="w", padx=20, pady=5)
             
-            for i in range(4):
+            # Botón Editar
+            edit_btn = ctk.CTkButton(row_frame, text="✏️", width=30, command=lambda c=concepto: self.open_edit_form(c))
+            edit_btn.grid(row=0, column=4, padx=20, pady=5)
+
+            for i in range(5):
                 row_frame.grid_columnconfigure(i, weight=1)
+
+    def open_edit_form(self, concepto):
+        from .concepto_form import ConceptoForm
+        # Se abre ConceptoForm en la ventana principal, pasándole los datos del concepto para edición
+        ConceptoForm(self.winfo_toplevel(), self.concepto_service, self.mes_actual, self.anio_actual, 
+                     on_success=self.refresh, concepto_existente=concepto)

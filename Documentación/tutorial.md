@@ -18,6 +18,12 @@ Al abrir la aplicación por primera vez cada mes, verás un mensaje emergente:
 - Cada mes es único. No puedes crear dos veces el mismo mes.
 - Si decides no crear el periodo al inicio, podrás hacerlo más tarde desde el Dashboard (funcionalidad en desarrollo).
 
+### Visualización en el Dashboard
+El Dashboard está estructurado para mostrarte la información consolidada:
+- **Resumen del Mes**: Verás los ingresos y gastos correspondientes al periodo que tienes seleccionado.
+- **Lista de Conceptos**: Una tabla debajo mostrará todos los movimientos registrados para ese mes, incluyendo su valor, si son ingresos o egresos, y si son recurrentes.
+- **Edición de Conceptos**: Al final de cada fila, encontrarás un botón "✏️". Si te equivocaste al registrar un concepto, puedes presionarlo para modificar sus datos. *Nota: Si cambias el nombre de un concepto recurrente, este cambio se aplicará a todos los meses futuros.*
+
 ## Visualización de Periodos
 
 En la barra lateral izquierda de la aplicación, encontrarás la sección **PERIODOS**:
