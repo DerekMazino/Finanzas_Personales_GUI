@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from tkinter import messagebox
 
 class ConceptListFrame(ctk.CTkScrollableFrame):
     def __init__(self, master, concepto_service, **kwargs):
@@ -55,9 +56,16 @@ class ConceptListFrame(ctk.CTkScrollableFrame):
             # Recurrente
             ctk.CTkLabel(row_frame, text="Sí" if es_recurrente else "No").grid(row=0, column=3, sticky="w", padx=20, pady=5)
             
-            # Botón Editar
-            edit_btn = ctk.CTkButton(row_frame, text="✏️", width=30, command=lambda c=concepto: self.open_edit_form(c))
-            edit_btn.grid(row=0, column=4, padx=20, pady=5)
+            # Botones de Acción
+            actions_frame = ctk.CTkFrame(row_frame, fg_color="transparent")
+            actions_frame.grid(row=0, column=4, padx=20, pady=5)
+            
+            edit_btn = ctk.CTkButton(actions_frame, text="✏️", width=30, command=lambda c=concepto: self.open_edit_form(c))
+            edit_btn.pack(side="left", padx=2)
+            
+            delete_btn = ctk.CTkButton(actions_frame, text="🗑️", width=30, fg_color="#c0392b", hover_color="#962d22",
+                                      command=lambda c=concepto: self.confirmar_eliminacion(c))
+            delete_btn.pack(side="left", padx=2)
 
             for i in range(5):
                 row_frame.grid_columnconfigure(i, weight=1)
@@ -67,3 +75,12 @@ class ConceptListFrame(ctk.CTkScrollableFrame):
         # Se abre ConceptoForm en la ventana principal, pasándole los datos del concepto para edición
         ConceptoForm(self.winfo_toplevel(), self.concepto_service, self.mes_actual, self.anio_actual, 
                      on_success=self.refresh, concepto_existente=concepto)
+
+    def confirmar_eliminacion(self, concepto):
+        id_c, _, nombre, _, _, es_recurrente, *_ = concepto
+        
+        titulo, mensaje = self.concepto_service.obtener_info_eliminacion(nombre)
+        
+        if messagebox.askyesno(f"Confirmar: {titulo}", f"{mensaje}\n\n¿Estás seguro de que deseas eliminar '{nombre}'?"):
+            self.concepto_service.eliminar_concepto(id_c, nombre, es_recurrente)
+            self.refresh()

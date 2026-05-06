@@ -39,3 +39,16 @@ class ConceptoRepository:
     def update_plantilla_name(self, old_nombre, new_nombre):
         query, params = QueryBuilder("plantillas_recurrentes").update({"nombre": new_nombre}).where("nombre", old_nombre).build()
         self.db.execute_query(query, params)
+
+    def delete_concepto(self, id):
+        query, params = QueryBuilder(self.table).delete().where("id", id).build()
+        self.db.execute_query(query, params)
+
+    def delete_plantilla_recurrente(self, nombre):
+        query, params = QueryBuilder("plantillas_recurrentes").delete().where("nombre", nombre).build()
+        self.db.execute_query(query, params)
+
+    def count_history(self, nombre):
+        query, params = QueryBuilder(self.table).select("COUNT(*)").where("nombre", nombre).build()
+        result = self.db.fetch_one(query, params)
+        return result[0] if result else 0
