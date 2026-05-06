@@ -28,5 +28,5 @@
 
 ## 6. Finalización y Sincronización
 
-- [ ] 6.1 **RULE-03**: Realizar commit, push y merge hacia `feature/gestion-periodos`.
-- [ ] 6.2 **RULE-01**: Actualizar `README.md` y `Documentación/tutorial.md` con la nueva funcionalidad de periodos.
+- [x] 6.1 **RULE-03**: Realizar commit, push y merge hacia `feature/gestion-periodos`.
+- [x] 6.2 **RULE-01**: Actualizar `README.md` y `Documentación/tutorial.md` con la nueva funcionalidad de periodos.
