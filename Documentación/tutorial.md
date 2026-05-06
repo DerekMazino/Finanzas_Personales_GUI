@@ -18,5 +18,13 @@ Al abrir la aplicación por primera vez cada mes, verás un mensaje emergente:
 - Cada mes es único. No puedes crear dos veces el mismo mes.
 - Si decides no crear el periodo al inicio, podrás hacerlo más tarde desde el Dashboard (funcionalidad en desarrollo).
 
+## Visualización de Periodos
+
+En la barra lateral izquierda de la aplicación, encontrarás la sección **PERIODOS**:
+
+1. **Listado Cronológico**: Verás todos los meses registrados ordenados del más reciente al más antiguo.
+2. **Estado Vacío**: Si aún no has creado ningún periodo, verás un mensaje invitándote a crear el primero.
+3. **Navegación**: Puedes hacer clic en los botones de la lista para cambiar la vista del Dashboard al periodo seleccionado (funcionalidad de filtrado en desarrollo).
+
 ---
 [Volver al README](../README.md)

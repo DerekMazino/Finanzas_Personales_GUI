@@ -1,0 +1,10 @@
+name: f1-h2-list-periods
+description: "HU2: Listar periodos registrados en el sistema."
+status: ready
+artifacts:
+  proposal: done
+  spec: done
+  design: done
+  tasks: done
+apply:
+  requires: ["tasks", "design", "spec"]

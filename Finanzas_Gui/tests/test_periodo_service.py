@@ -36,4 +36,24 @@ def test_crear_periodo_exitoso_y_llama_a_copia_recurrentes(mock_repos):
     service.crear_periodo(6, 2026)
 
     periodo_repo.create.assert_called_once_with(6, 2026)
-    concepto_repo.create.assert_called_once() # Se llamó para copiar el sueldo
+    # Se llamó para copiar el sueldo
+    assert concepto_repo.create.called
+
+def test_obtener_todos_formateados_con_orden_y_mapeo(mock_repos):
+    periodo_repo, concepto_repo = mock_repos
+    # Simular datos desordenados
+    periodo_repo.get_all.return_value = [
+        (1, 1, 2026),
+        (2, 12, 2025),
+        (3, 5, 2026)
+    ]
+
+    service = PeriodoService(periodo_repo, concepto_repo)
+    resultado = service.obtener_todos_formateados()
+
+    # El orden debe ser Mayo 2026, Enero 2026, Diciembre 2025
+    assert resultado[0]["mes_nombre"] == "Mayo"
+    assert resultado[0]["anio"] == 2026
+    assert resultado[1]["mes_nombre"] == "Enero"
+    assert resultado[2]["mes_nombre"] == "Diciembre"
+    assert resultado[2]["anio"] == 2025

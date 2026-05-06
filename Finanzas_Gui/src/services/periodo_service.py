@@ -46,3 +46,27 @@ class PeriodoService:
                 tipo=concepto[4],
                 es_recurrente=1
             )
+
+    def obtener_todos_formateados(self):
+        """Devuelve una lista de diccionarios con mes_nombre, anio e id, ordenados desc."""
+        periodos = self.periodo_repo.get_all()
+        # periodos: list of tuples (id, mes, anio)
+        
+        # Mapeo de meses en español
+        nombres_meses = {
+            1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril",
+            5: "Mayo", 6: "Junio", 7: "Julio", 8: "Agosto",
+            9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
+        }
+
+        # Ordenar: año descendente, mes descendente
+        periodos_sorted = sorted(periodos, key=lambda x: (x[2], x[1]), reverse=True)
+
+        return [
+            {
+                "id": p[0],
+                "mes_nombre": nombres_meses.get(p[1], "Desconocido"),
+                "anio": p[2]
+            }
+            for p in periodos_sorted
+        ]
