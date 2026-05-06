@@ -20,3 +20,9 @@ class DBConnection:
             cursor = conn.cursor()
             cursor.execute(query, params)
             return cursor.fetchall()
+
+    def fetch_one(self, query, params=()):
+        with self.connect() as conn:
+            cursor = conn.cursor()
+            cursor.execute(query, params)
+            return cursor.fetchone()

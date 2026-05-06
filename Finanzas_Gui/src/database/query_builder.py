@@ -21,6 +21,10 @@ class QueryBuilder:
         self._params = list(data.values())
         return self
 
+    def delete(self):
+        self._query = f"DELETE FROM {self.table}"
+        return self
+
     def where(self, column, value, operator="="):
         if "WHERE" not in self._query:
             self._query += f" WHERE {column} {operator} ?"
