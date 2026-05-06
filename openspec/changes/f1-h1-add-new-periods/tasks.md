@@ -23,8 +23,8 @@
 
 ## 5. Pruebas y Calidad
 
-- [ ] 5.1 Crear unit tests con `pytest` para la creación de periodos (incluyendo casos de duplicidad).
-- [ ] 5.2 Verificar que el formato de commit sea `feat(HU-1): {descripcion}`.
+- [x] 5.1 Crear unit tests con `pytest` para la creación de periodos (incluyendo casos de duplicidad).
+- [x] 5.2 Verificar que el formato de commit sea `feat(HU-1): {descripcion}`.
 
 ## 6. Finalización y Sincronización
 
