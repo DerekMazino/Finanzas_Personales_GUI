@@ -25,5 +25,5 @@
 
 ## 6. Finalización
 
-- [ ] 6.1 Realizar la integración de ramas según GitFlow.
-- [ ] 6.2 Actualizar el archivo `tutorial.md` con instrucciones sobre cómo editar conceptos.
+- [x] 6.1 Realizar la integración de ramas según GitFlow.
+- [x] 6.2 Actualizar el archivo `tutorial.md` con instrucciones sobre cómo editar conceptos.
