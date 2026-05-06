@@ -30,7 +30,7 @@ class ConceptoService:
             self.periodo_service.crear_periodo(mes, anio)
         
         # Obtener el ID del periodo
-        periodo = self.periodo_service.periodo_repo.get_by_mes_anio(mes, anio)
+        periodo = self.periodo_service.periodo_repo.get_by_date(mes, anio)
         if not periodo:
             raise Exception(f"No se pudo encontrar ni crear el periodo {mes}/{anio}")
         
@@ -53,3 +53,31 @@ class ConceptoService:
             )
         
         return nuevo_id
+
+    def obtener_conceptos_por_periodo(self, mes, anio):
+        periodo = self.periodo_service.periodo_repo.get_by_date(mes, anio)
+        if not periodo:
+            return []
+        
+        periodo_id = periodo[0]
+        return self.concepto_repo.get_by_periodo(periodo_id)
+
+    def modificar_concepto(self, id, old_nombre, new_nombre, valor, tipo, es_recurrente):
+        self.validar_datos(new_nombre, valor, tipo)
+        
+        if es_recurrente and old_nombre != new_nombre:
+            self.concepto_repo.update_plantilla_name(old_nombre, new_nombre)
+            
+        self.concepto_repo.update_concepto(id, new_nombre, float(valor), tipo, 1 if es_recurrente else 0)
+
+    def obtener_info_eliminacion(self, nombre):
+        count = self.concepto_repo.count_history(nombre)
+        if count <= 1:
+            return "Definitiva", "Este concepto no tiene historial. Se eliminará permanentemente del sistema."
+        else:
+            return "Desactivación de Recurrencia", f"Este concepto tiene historial en {count} periodos. Se eliminará de este mes y se detendrá su recurrencia futura, preservando los datos pasados."
+
+    def eliminar_concepto(self, id, nombre, es_recurrente):
+        self.concepto_repo.delete_concepto(id)
+        if es_recurrente:
+            self.concepto_repo.delete_plantilla_recurrente(nombre)
