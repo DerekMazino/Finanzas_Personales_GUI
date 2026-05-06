@@ -4,10 +4,11 @@ Este proyecto es una herramienta de gestión de finanzas personales construida c
 
 ## Funcionalidades Actuales
 
-### 1. Gestión de Periodos (Feature 1)
+### 1. Gestión de Periodos (Feature 1) [FINALIZADA]
 - **Detección Automática**: Al iniciar, el sistema verifica si existe el periodo del mes actual.
 - **Creación de Periodos**: Permite crear nuevos periodos mensuales (Mes/Año).
 - **Recurrencia Automática**: Copia automáticamente los conceptos marcados como "recurrentes" del último periodo registrado al nuevo periodo.
+- **Listado Histórico**: Visualización cronológica de todos los periodos en la barra lateral.
 
 ## Guía de Inicio Rápido
 
