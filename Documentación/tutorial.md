@@ -53,8 +53,21 @@ Una vez que hayas agregado conceptos, la pantalla principal (Dashboard) mostrar�
 - **Valor:** El monto en verde para ingresos y en rojo para egresos.
 - **Tipo:** Identificación clara de Ingreso o Egreso.
 - **Recurrente:** Indicador de si el concepto se clonará automáticamente en meses futuros.
+- **Acción:** Botones para Editar (✏️) o Eliminar (🗑️).
 
 Si el periodo no tiene conceptos, verás un mensaje invitándote a empezar a registrar tus movimientos.
+
+## Eliminación de Conceptos (Eliminación Inteligente)
+
+Para eliminar un concepto, presiona el botón "🗑️" al final de la fila. El sistema realizará una **Eliminación Inteligente** basándose en la historia del registro:
+
+1.  **Eliminación Definitiva**: Si el concepto solo existe en el mes actual (fue un error puntual), se borrará completamente de la base de datos.
+2.  **Desactivación de Recurrencia**: Si el concepto es recurrente y tiene historial en meses pasados, el sistema:
+    - Borrará el registro del **mes actual**.
+    - Eliminará la **plantilla de recurrencia** para que no aparezca en meses futuros.
+    - **Conservará los registros pasados** intactos para no alterar tu historial histórico.
+
+*Siempre se te pedirá confirmación antes de proceder, informándote de cuál de los dos casos se aplicará.*
 
 ---
 [Volver al README](../README.md)

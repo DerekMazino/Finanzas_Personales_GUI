@@ -26,5 +26,5 @@
 
 ## 6. Finalización
 
-- [ ] 6.1 Realizar la integración de ramas según el protocolo.
-- [ ] 6.2 Actualizar el archivo `tutorial.md` con la explicación sobre la eliminación inteligente de conceptos.
+- [x] 6.1 Realizar la integración de ramas según el protocolo.
+- [x] 6.2 Actualizar el archivo `tutorial.md` con la explicación sobre la eliminación inteligente de conceptos.
