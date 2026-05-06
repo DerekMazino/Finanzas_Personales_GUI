@@ -53,3 +53,11 @@ class ConceptoService:
             )
         
         return nuevo_id
+
+    def obtener_conceptos_por_periodo(self, mes, anio):
+        periodo = self.periodo_service.periodo_repo.get_by_mes_anio(mes, anio)
+        if not periodo:
+            return []
+        
+        periodo_id = periodo[0]
+        return self.concepto_repo.get_by_periodo(periodo_id)

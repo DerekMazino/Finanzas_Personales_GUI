@@ -39,5 +39,16 @@ Para registrar un nuevo ingreso o gasto:
    - **Recurrente**: Si marcas esta opción, el concepto se guardará como plantilla y se aplicará automáticamente a todos los nuevos periodos que crees en el futuro.
 4. Haz clic en **Guardar**.
 
+## Visualización de Conceptos (Tabla del Dashboard)
+
+Una vez que hayas agregado conceptos, la pantalla principal (Dashboard) mostrará una tabla con el detalle de las finanzas del mes actual:
+
+- **Nombre:** La descripción del concepto.
+- **Valor:** El monto en verde para ingresos y en rojo para egresos.
+- **Tipo:** Identificación clara de Ingreso o Egreso.
+- **Recurrente:** Indicador de si el concepto se clonará automáticamente en meses futuros.
+
+Si el periodo no tiene conceptos, verás un mensaje invitándote a empezar a registrar tus movimientos.
+
 ---
 [Volver al README](../README.md)

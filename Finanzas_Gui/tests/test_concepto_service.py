@@ -53,3 +53,23 @@ def test_agregar_concepto_recurrente_crea_plantilla(mock_deps):
     args = cr.db.execute_query.call_args[0]
     assert "plantillas_recurrentes" in args[0]
     assert "Renta" in args[1]
+
+def test_obtener_conceptos_por_periodo(mock_deps):
+    ps, cr = mock_deps
+    service = ConceptoService(cr, ps)
+    
+    # Simular periodo existente (id=10)
+    ps.periodo_repo.get_by_mes_anio.return_value = (10, 5, 2026)
+    
+    # Simular retorno del repositorio
+    cr.get_by_periodo.return_value = [
+        (1, 10, "Sueldo", 1500, "ingreso", 0),
+        (2, 10, "Renta", 500, "egreso", 1)
+    ]
+    
+    conceptos = service.obtener_conceptos_por_periodo(5, 2026)
+    
+    assert len(conceptos) == 2
+    assert conceptos[0][2] == "Sueldo"
+    assert conceptos[1][4] == "egreso"
+    cr.get_by_periodo.assert_called_with(10)
