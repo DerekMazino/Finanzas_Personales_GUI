@@ -17,6 +17,7 @@ rules:
     - "RULE-02: No implementar código sin una HU previa con criterios de aceptación en el .md de la Feature."
     - "RULE-05: Commits con formato 'feat(HU-{id}): {descripcion}'."
     - "RULE-06: Antes de codificar, validar que la rama actual coincida con la HU."
+    - "RULE-07: Todo el código, servicios, bases de datos y tests deben residir exclusivamente dentro del directorio Finanzas_Gui/."
 
   proposal:
     - "Seguir el protocolo RULE-02: Evolución basada en incrementos en el historial del fichero de la Feature."
