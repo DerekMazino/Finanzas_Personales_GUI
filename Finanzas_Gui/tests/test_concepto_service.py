@@ -59,7 +59,7 @@ def test_obtener_conceptos_por_periodo(mock_deps):
     service = ConceptoService(cr, ps)
     
     # Simular periodo existente (id=10)
-    ps.periodo_repo.get_by_mes_anio.return_value = (10, 5, 2026)
+    ps.periodo_repo.get_by_date.return_value = (10, 5, 2026)
     
     # Simular retorno del repositorio
     cr.get_by_periodo.return_value = [

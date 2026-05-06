@@ -40,8 +40,8 @@ class ConceptListFrame(ctk.CTkScrollableFrame):
 
         # Filas
         for row, concepto in enumerate(conceptos, start=1):
-            # concepto: (id, periodo_id, nombre, valor, tipo, es_recurrente)
-            _, _, nombre, valor, tipo, es_recurrente = concepto
+            # concepto puede tener más de 6 campos (ej. created_at), así que usamos *_ al final
+            _, _, nombre, valor, tipo, es_recurrente, *_ = concepto
             
             row_frame = ctk.CTkFrame(self)
             row_frame.pack(fill="x", padx=10, pady=2)

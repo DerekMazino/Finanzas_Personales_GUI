@@ -30,7 +30,7 @@ class ConceptoService:
             self.periodo_service.crear_periodo(mes, anio)
         
         # Obtener el ID del periodo
-        periodo = self.periodo_service.periodo_repo.get_by_mes_anio(mes, anio)
+        periodo = self.periodo_service.periodo_repo.get_by_date(mes, anio)
         if not periodo:
             raise Exception(f"No se pudo encontrar ni crear el periodo {mes}/{anio}")
         
@@ -55,7 +55,7 @@ class ConceptoService:
         return nuevo_id
 
     def obtener_conceptos_por_periodo(self, mes, anio):
-        periodo = self.periodo_service.periodo_repo.get_by_mes_anio(mes, anio)
+        periodo = self.periodo_service.periodo_repo.get_by_date(mes, anio)
         if not periodo:
             return []
         
