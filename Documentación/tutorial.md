@@ -26,5 +26,18 @@ En la barra lateral izquierda de la aplicación, encontrarás la sección **PERI
 2. **Estado Vacío**: Si aún no has creado ningún periodo, verás un mensaje invitándote a crear el primero.
 3. **Navegación**: Puedes hacer clic en los botones de la lista para cambiar la vista del Dashboard al periodo seleccionado (funcionalidad de filtrado en desarrollo).
 
+## Gestión de Conceptos
+
+Para registrar un nuevo ingreso o gasto:
+
+1. Ve al Dashboard principal.
+2. Haz clic en el botón **➕ Agregar Concepto**.
+3. Completa el formulario con:
+   - **Nombre**: Debe empezar por una letra (ej. Sueldo, Alquiler).
+   - **Valor**: Un número positivo.
+   - **Tipo**: Ingreso o Egreso.
+   - **Recurrente**: Si marcas esta opción, el concepto se guardará como plantilla y se aplicará automáticamente a todos los nuevos periodos que crees en el futuro.
+4. Haz clic en **Guardar**.
+
 ---
 [Volver al README](../README.md)

@@ -2,13 +2,16 @@ import customtkinter as ctk
 from tkinter import messagebox
 from datetime import datetime
 from ..services.periodo_service import PeriodoService
+from ..services.concepto_service import ConceptoService
 from .components.period_list import PeriodListFrame
+from .components.concepto_form import ConceptoForm
 
 class App(ctk.CTk):
-    def __init__(self, periodo_service: PeriodoService):
+    def __init__(self, periodo_service: PeriodoService, concepto_service: ConceptoService):
         super().__init__()
 
         self.periodo_service = periodo_service
+        self.concepto_service = concepto_service
         self.title("Finanzas Personales - Antigravity")
         self.geometry("900x600")
 
@@ -51,6 +54,18 @@ class App(ctk.CTk):
 
         self.welcome_label = ctk.CTkLabel(self.main_content, text="Bienvenido a tu Dashboard", font=ctk.CTkFont(size=16))
         self.welcome_label.pack(pady=20)
+
+        self.add_btn = ctk.CTkButton(self.main_content, text="➕ Agregar Concepto", command=self.open_add_concepto)
+        self.add_btn.pack(pady=10)
+
+    def open_add_concepto(self):
+        now = datetime.now()
+        ConceptoForm(self, self.concepto_service, now.month, now.year, on_success=self.refresh_dashboard)
+
+    def refresh_dashboard(self):
+        # Por ahora solo refresca la lista si fuera necesario, 
+        # en el futuro actualizará los totales del dashboard.
+        self.refresh_period_list()
 
     def check_current_period(self):
         now = datetime.now()
