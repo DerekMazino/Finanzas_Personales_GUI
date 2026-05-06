@@ -22,5 +22,5 @@
 
 ## 5. Finalización
 
-- [ ] 5.1 **RULE-08**: Integración y limpieza de ramas.
-- [ ] 5.2 **RULE-01**: Sincronización de README y Tutorial.
+- [x] 5.1 **RULE-08**: Integración y limpieza de ramas.
+- [x] 5.2 **RULE-01**: Sincronización de README y Tutorial.
