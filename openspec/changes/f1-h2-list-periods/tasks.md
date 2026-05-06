@@ -22,5 +22,5 @@
 
 ## 5. Finalización
 
-- [ ] 5.1 **RULE-03**: Commit, Push y Merge hacia la rama feature.
-- [ ] 5.2 **RULE-01**: Actualizar documentación si es necesario (tutorial.md).
+- [x] 5.1 **RULE-03**: Commit, Push y Merge hacia la rama feature.
+- [x] 5.2 **RULE-01**: Actualizar documentación si es necesario (tutorial.md).
