@@ -15,6 +15,12 @@ class QueryBuilder:
         self._params = list(data.values())
         return self
 
+    def update(self, data: dict):
+        set_clause = ", ".join([f"{k} = ?" for k in data.keys()])
+        self._query = f"UPDATE {self.table} SET {set_clause}"
+        self._params = list(data.values())
+        return self
+
     def where(self, column, value, operator="="):
         if "WHERE" not in self._query:
             self._query += f" WHERE {column} {operator} ?"
